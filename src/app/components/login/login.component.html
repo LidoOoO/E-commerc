@@ -1,0 +1,67 @@
+<div class="container my-5">
+  <h2 class="fw-bold">LogIn Now:</h2>
+  <p *ngIf="apiErr" class="alert alert-danger">
+    {{ apiErr }}
+  </p>
+  <form [formGroup]="log" (ngSubmit)="Login(log)">
+    <label for="email" class="fw-bold">Email :</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="log.get('email')?.errors && log.get('email')?.touched"
+      class="alert alert-danger"
+    >
+      <p *ngIf="log.get('email')?.getError('required')" class="mb-0">
+        Email is Required
+      </p>
+      <p *ngIf="log.get('email')?.getError('email')" class="mb-0">
+        Email is not Valid
+      </p>
+    </div>
+
+    <label for="password" class="fw-bold">Password :</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="log.get('password')?.errors && log.get('password')?.touched"
+      class="alert alert-danger"
+    >
+      <p *ngIf="log.get('password')?.getError('required')" class="mb-0">
+        Password is Required
+      </p>
+      <p
+        *ngIf="log.get('password')?.getError('pattern')"
+        class="mb-0 d-flex flex-column"
+      >
+        <span>Worng Password</span>
+      </p>
+    </div>
+
+    <span class="cursor-pointer fw-bolder fa-1x chC" routerLink="/forgetP"
+      >forget your password ?</span
+    >
+
+    <button
+      [style.background-color]="log.valid ? '#4fa74f' : ''"
+      [style.color]="log.valid ? '#fff' : ''"
+      [style.border-color]="log.valid ? '#4fa74f' : ''"
+      [disabled]="load"
+      [disabled]="log.invalid"
+      type="submit"
+      class="cursor-pointer btn py-2 btn-outline-dark fa-1x px-4 ms-auto d-block"
+    >
+      <i *ngIf="load" class="fa fa-spinner fa-spin"></i>
+      <span class="fw-bold" *ngIf="!load">Login Now</span>
+    </button>
+  </form>
+</div>

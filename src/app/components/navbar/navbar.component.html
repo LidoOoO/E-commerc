@@ -1,0 +1,139 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary py-2 fixed-top">
+  <div class="container">
+    <a
+      *ngIf="isLoggedIn"
+      class="navbar-brand mt-0 pt-0 fw-bolder ms-xxl-5 ms-xl-5 ms-lg-5 cursor-pointer"
+      [style.font-size]="'26px'"
+      routerLink="home"
+      ><i
+        class="fa-solid fa-cart-shopping test text-main"
+        [style.font-size]="'30px'"
+      >
+      </i
+      >fresh cart</a
+    >
+    <a
+      *ngIf="!isLoggedIn"
+      class="navbar-brand mt-0 pt-0 fw-bolder ms-xxl-5 ms-xl-5 ms-lg-5 cursor-pointer"
+      [style.font-size]="'26px'"
+      routerLink="login"
+      ><i
+        class="fa-solid fa-cart-shopping test text-main"
+        [style.font-size]="'30px'"
+      ></i
+      >fresh cart</a
+    >
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul
+        class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center"
+        *ngIf="!isLoggedIn"
+      >
+        <li class="nav-item">
+          <a
+            class="nav-link me-xxl-2 me-xl-2 mel fw-bold"
+            routerLink="register"
+            routerLinkActive="text-black"
+            >register</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="login"
+            routerLinkActive="text-black"
+            >log in</a
+          >
+        </li>
+      </ul>
+      <ul
+        class="navbar-nav mb-2 mb-lg-0 ps-xxl-5 ps-xl-5 ps-lg-5 ms-xxl-5 ms-xl-5 ms-lg-5 d-flex justify-content-center align-items-center"
+        *ngIf="isLoggedIn"
+      >
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="home"
+            routerLinkActive="text-black"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="cart"
+            routerLinkActive="text-black"
+            >Cart</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="wishList"
+            routerLinkActive="text-black"
+            >Wish List</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="products"
+            routerLinkActive="text-black"
+            >Products</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="categories"
+            routerLinkActive="text-black"
+            >Categories</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link fw-bold"
+            routerLink="brands"
+            routerLinkActive="text-black"
+            >Brands</a
+          >
+        </li>
+      </ul>
+      <ul
+        class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center"
+        *ngIf="isLoggedIn"
+      >
+        <li class="position-relative">
+          <a>
+            <div class="badge bg-main position-absolute">{{ numbercart }}</div>
+            <i
+              class="nav-link fa-solid fa-cart-shopping me-xxl-4 cursor-pointer me-xl-4 me-lg-4"
+              [style.font-size]="'25px'"
+              routerLink="cart"
+              routerLinkActive="text-black"
+            ></i>
+          </a>
+        </li>
+        <li
+          class="nav-link fw-bold cursor-pointer"
+          aria-current="page"
+          routerLink="login"
+          (click)="logOut()"
+        >
+          log Out
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

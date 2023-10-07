@@ -1,0 +1,62 @@
+<div class="container my-5">
+  <h2 class="fw-bold">Update your Password:</h2>
+  <p *ngIf="apiErr" class="alert alert-danger">
+    {{ apiErr }}
+  </p>
+  <form [formGroup]="upP" (ngSubmit)="updateP(upP)">
+    <label for="email" class="fw-bold">Email :</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="upP.get('email')?.errors && upP.get('email')?.touched"
+      class="alert alert-danger"
+    >
+      <p *ngIf="upP.get('email')?.getError('required')" class="mb-0">
+        Email is Required
+      </p>
+      <p *ngIf="upP.get('email')?.getError('email')" class="mb-0">
+        Email is not Valid
+      </p>
+    </div>
+
+    <label for="password" class="fw-bold">New Password :</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="newPassword"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="upP.get('newPassword')?.errors && upP.get('newPassword')?.touched"
+      class="alert alert-danger"
+    >
+      <p *ngIf="upP.get('newPassword')?.getError('required')" class="mb-0">
+        Password is Required
+      </p>
+      <p
+        *ngIf="upP.get('newPassword')?.getError('pattern')"
+        class="mb-0 d-flex flex-column"
+      >
+        <span>Worng Password</span>
+      </p>
+    </div>
+    <button
+      [style.background-color]="upP.valid ? '#4fa74f' : ''"
+      [style.color]="upP.valid ? '#fff' : ''"
+      [style.border-color]="upP.valid ? '#4fa74f' : ''"
+      [disabled]="load"
+      [disabled]="upP.invalid"
+      type="submit"
+      class="btn py-2 btn-outline-dark fa-1x px-4 ms-auto d-block cursor-pointer"
+    >
+      <i *ngIf="load" class="fa fa-spinner fa-spin"></i>
+      <span class="fw-bold" *ngIf="!load">Update</span>
+    </button>
+  </form>
+</div>

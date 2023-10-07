@@ -1,0 +1,140 @@
+<div class="container my-5">
+  <h2 class="fw-bold">Register Now:</h2>
+  <p *ngIf="apiErr" class="alert alert-danger">
+    {{ apiErr }}
+  </p>
+  <form [formGroup]="register" (ngSubmit)="Register(register)">
+    <label for="name" class="fw-bold">Name :</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="register.get('name')?.errors && register.get('name')?.touched"
+      class="alert alert-danger"
+    >
+      <p *ngIf="register.get('name')?.getError('required')" class="mb-0">
+        Name is Required
+      </p>
+      <p *ngIf="register.get('name')?.getError('minlength')" class="mb-0">
+        Name min length is 3
+      </p>
+      <p *ngIf="register.get('name')?.getError('maxlength')" class="mb-0">
+        Name max length is 10
+      </p>
+      <p *ngIf="register.get('name')?.getError('pattern')" class="mb-0">
+        Invalid Name
+      </p>
+    </div>
+
+    <label for="email" class="fw-bold">Email :</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="register.get('email')?.errors && register.get('email')?.touched"
+      class="alert alert-danger"
+    >
+      <p *ngIf="register.get('email')?.getError('required')" class="mb-0">
+        Email is Required
+      </p>
+      <p *ngIf="register.get('email')?.getError('email')" class="mb-0">
+        Email is not Valid
+      </p>
+    </div>
+
+    <label for="password" class="fw-bold">Password :</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="
+        register.get('password')?.errors && register.get('password')?.touched
+      "
+      class="alert alert-danger"
+    >
+      <p *ngIf="register.get('password')?.getError('required')" class="mb-0">
+        Password is Required
+      </p>
+      <p
+        *ngIf="register.get('password')?.getError('pattern')"
+        class="mb-0 d-flex flex-column"
+      >
+        <span>must be</span>
+        <span>* Start with a uppercase letter.</span>
+        <span>* Be between 6 and 9 characters in total.</span>
+        <span>* Can only contain letters (A-Z or a-z) and numbers (0-9)</span>
+      </p>
+    </div>
+
+    <label for="rePassword" class="fw-bold">Re-Password :</label>
+    <input
+      type="password"
+      id="rePassword"
+      formControlName="rePassword"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="
+        register.get('rePassword')?.errors &&
+        register.get('rePassword')?.touched
+      "
+      class="alert alert-danger"
+    >
+      <p *ngIf="register.get('rePassword')?.getError('required')" class="mb-0">
+        Password is Required
+      </p>
+      <p
+        *ngIf="register.get('rePassword')?.getError('pattern')"
+        class="mb-0 d-flex flex-column"
+      >
+        re-Password pattern is inavalid
+      </p>
+    </div>
+
+    <label for="phone" class="fw-bold">Phone :</label>
+    <input
+      type="tel"
+      id="phone"
+      formControlName="phone"
+      class="form-control mb-2"
+    />
+
+    <div
+      *ngIf="register.get('phone')?.errors && register.get('phone')?.touched"
+      class="alert alert-danger"
+    >
+      <p *ngIf="register.get('phone')?.getError('required')" class="mb-0">
+        Phone is Required
+      </p>
+      <p *ngIf="register.get('phone')?.getError('pattern')" class="mb-0">
+        invalid phone
+      </p>
+    </div>
+
+    <button
+      [style.background-color]="register.valid ? '#4fa74f' : ''"
+      [style.color]="register.valid ? '#fff' : ''"
+      [style.border-color]="register.valid ? '#4fa74f' : ''"
+      [disabled]="load"
+      [disabled]="register.invalid"
+      type="submit"
+      class=".cursor-pointer btn py-2 btn-outline-dark fa-1x px-4 ms-auto d-block"
+    >
+      <i *ngIf="load" class="fa fa-spinner fa-spin"></i>
+      <span class="fw-bold" *ngIf="!load">Register Now</span>
+    </button>
+  </form>
+</div>

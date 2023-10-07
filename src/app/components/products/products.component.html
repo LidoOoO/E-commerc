@@ -1,0 +1,40 @@
+<div class="container my-5 pt-5">
+  <input
+    type="text"
+    class="form-control w-75 mx-auto my-5 border-1"
+    [placeholder]="'search...'"
+    [(ngModel)]="searchKey"
+  />
+  <div class="row">
+    <div
+      class="col-md-3"
+      *ngFor="let products of allproducts | searchP : searchKey"
+    >
+      <div class="product px-2 py-4 cursor-pointer">
+        <a [routerLink]="['/productdetils', products.id]">
+          <img [src]="products.imageCover" class="w-100" alt="" />
+          <p class="text-main">{{ products.category.name }}</p>
+          <h2 class="h6 fw-bold">
+            {{ products.title | trim : 2 }}
+          </h2>
+          <div class="d-flex justify-content-between fw-bold">
+            <span>{{ products.price }} EGP</span>
+            <div>
+              <i class="fa fa-star rating-color"></i>
+              {{ products.ratingsAverage }}
+            </div>
+          </div>
+        </a>
+        <div class="d-flex justify-content-between mt-2">
+          <button
+            class="btn bg-main w-75 text-white cursor-pointer"
+            (click)="addToCart(products.id)"
+          >
+            +ADD
+          </button>
+          <i class="fa fa-heart fa-2x cursor-pointer"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

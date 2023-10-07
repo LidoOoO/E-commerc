@@ -1,0 +1,8 @@
+.chC{
+    transition: color 1s ;
+}
+
+.chC:hover{
+    color: #0aad0a;
+}
+

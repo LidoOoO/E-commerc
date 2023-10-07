@@ -1,0 +1,43 @@
+<form [formGroup]="CodeR" (ngSubmit)="coder(CodeR)">
+  <div class="container mt-5">
+    <h2 class="fw-bold">Reset Your Account Password:</h2>
+    <p *ngIf="apiErr" class="alert alert-danger">
+      {{ apiErr }}
+    </p>
+
+    <input
+      type="email"
+      formControlName="resetCode"
+      class="form-control mb-2 py-3"
+      [placeholder]="'Code'"
+    />
+
+    <div
+      *ngIf="CodeR.get('resetCode')?.errors && CodeR.get('resetCode')?.touched"
+      class="alert alert-danger"
+    >
+      <p *ngIf="CodeR.get('resetCode')?.getError('required')" class="mb-0">
+        Code is Required
+      </p>
+      <p
+        *ngIf="CodeR.get('resetCode')?.getError('pattern')"
+        class="mb-0 d-flex flex-column"
+      >
+        <span>Worng Code</span>
+      </p>
+    </div>
+
+    <button
+      [style.background-color]="CodeR.valid ? '#4fa74f' : ''"
+      [style.color]="CodeR.valid ? '#fff' : ''"
+      [style.border-color]="CodeR.valid ? '#4fa74f' : ''"
+      [disabled]="load"
+      [disabled]="CodeR.invalid"
+      type="submit"
+      class="btn py-2 btn-outline-dark fa-1x px-4 ms-auto d-block cursor-pointer"
+    >
+      <i *ngIf="load" class="fa fa-spinner fa-spin"></i>
+      <span class="fw-bold" *ngIf="!load">Verify</span>
+    </button>
+  </div>
+</form>
