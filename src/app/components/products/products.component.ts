@@ -13,51 +13,61 @@ import { WishLService } from 'src/core/services/wish-l.service';
 export class ProductsComponent implements OnInit{
   allproducts:Products[] = []
   searchKey:string = ''
-  allwish:any
+  wishl:Wish = {} as Wish 
   constructor(private _productsService:ProductsService , private _wish:WishLService , private _cartService:CartService){}
 
 ngOnInit(): void {
     this.getall()
-    this.getfav()
+    this.getwish()
 }
+
+removefromwish(id:string){
+  this._wish.removeFromWish(id).subscribe({
+    next:(res)=>{
+      this.getwish();
+    }
+  })
+}
+
+
+getwish(){
+  this._wish.getFromWish().subscribe({
+    next:(res)=>{
+      console.log(res);
+      this.wishl = {} as Wish;
+      this.wishl = res
+      console.log(this.wishl);
+    }
+  })
+}
+
 
   getall(){
     this._productsService.getProducts().subscribe({
       next:(res)=>{
         console.log(res);
         this.allproducts = res.data
-        
       }
     })
   }
-  addfav(id:string){
+
+
+  addtowish(id:string){
     this._wish.addToWish(id).subscribe({
       next:(res)=>{
-        console.log(res);
-        return true
+        this.getwish()
       }
     })
   }
 
-  remfav(id:string){
-    this._wish.removeFromWish(id).subscribe({
-      next:(res)=>{
-        console.log(res);
-        return true
+  show(id:string){
+    for(let i = 0 ; i < this.wishl.data.length; i++){
+      if(id == this.wishl.data[i].id){
+        return true;
       }
-    })
-    
+    }
+    return false
   }
-
-  getfav(){
-    this._wish.getFromWish().subscribe({
-      next:(res)=>{
-        console.log(res); 
-        this.allwish = res.data
-      }
-    })
-  }
-
 
   addToCart(id:string){
   this._cartService.addtocart(id).subscribe({

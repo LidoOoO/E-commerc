@@ -32,7 +32,21 @@
           >
             +ADD
           </button>
-          <i class="fa fa-heart fa-2x cursor-pointer"></i>
+          <div>
+            <div>
+              <i
+                *ngIf="!show(products.id)"
+                class="fa fa-heart fa-2x cursor-pointer"
+                (click)="addtowish(products.id)"
+              ></i>
+              <i
+                *ngIf="show(products.id)"
+                style="color: red"
+                class="fa fa-heart fa-2x cursor-pointer"
+                (click)="removefromwish(products.id)"
+              ></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>

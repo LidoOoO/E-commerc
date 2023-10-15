@@ -7,7 +7,6 @@ import { ProductsComponent } from './components/products/products.component';
 import { CartComponent } from './components/cart/cart.component';
 import { BrandsComponent } from './components/brands/brands.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { AboutComponent } from './components/about/about.component';
 import { NotFComponent } from './components/not-f/not-f.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { authGuard } from 'src/core/guards/auth.guard';
@@ -17,6 +16,7 @@ import { CodeRComponent } from './components/code-r/code-r.component';
 import { ResetPComponent } from './components/reset-p/reset-p.component';
 import { ProductDetilsComponent } from './components/product-detils/product-detils.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
 
 
 
@@ -28,10 +28,10 @@ const routes: Routes = [
 {path:"cart",canActivate:[authGuard],component:CartComponent,title:"cart"},
 {path:"brands",canActivate:[authGuard],component:BrandsComponent,title:"Brands"},
 {path:"categories",canActivate:[authGuard],component:CategoriesComponent,title:"Categories"},
-{path:"about",canActivate:[authGuard],component:AboutComponent,title:"About"},
 {path:"wishList",canActivate:[authGuard],component:WishListComponent,title:"Wish List"},
 {path:"productdetils/:id",canActivate:[authGuard],component:ProductDetilsComponent,title:"Product Detils"},
 {path:"cheakOut",canActivate:[authGuard],component:CheckOutComponent,title:"cheak Out"},
+{path:"allorders",canActivate:[authGuard],component:AllordersComponent,title:"allorders"},
 
 
 {path:"coder",canActivate:[authDGuard],component:CodeRComponent,title:"Reset Code"},

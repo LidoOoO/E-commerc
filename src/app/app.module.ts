@@ -11,7 +11,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
-import { AboutComponent } from './components/about/about.component';
 import { ProductsComponent } from './components/products/products.component';
 import { BrandsComponent } from './components/brands/brands.component';
 import { CategoriesComponent } from './components/categories/categories.component';
@@ -28,6 +27,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { TrimPipe } from './pipes/trim.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
     RegisterComponent,
     HomeComponent,
     CartComponent,
-    AboutComponent,
     ProductsComponent,
     BrandsComponent,
     CategoriesComponent,
@@ -53,6 +52,7 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
     TrimPipe,
     SearchPipe,
     CheckOutComponent,
+    AllordersComponent,
   ],
   imports: [
     BrowserModule,

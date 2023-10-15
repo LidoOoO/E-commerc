@@ -17,16 +17,11 @@ constructor(private _wish:WishLService , private cart:CartService){
 }
 wishl:Wish = {} as Wish 
 
-  addtowish(id:string){
-    this._wish.addToWish(id).subscribe({
-      next:(res)=>{
-      }
-    })
-  }
+
   removefromwish(id:string){
     this._wish.removeFromWish(id).subscribe({
       next:(res)=>{
-        
+        this.getwish();
       }
     })
   }
@@ -50,7 +45,7 @@ wishl:Wish = {} as Wish
     this.cart.addtocart(id).subscribe({
       next:(res)=>{
         console.log(res);
-        
+        this.cart.number.next(res.numOfCartItems)
       }
     })
     }

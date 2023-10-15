@@ -1,40 +1,42 @@
-<form [formGroup]="Forget" (ngSubmit)="forget(Forget)">
-  <div class="container mt-5">
-    <h2 class="fw-bold">Please Enter Your Email:</h2>
-    <p *ngIf="apiErr" class="alert alert-danger">
-      {{ apiErr }}
-    </p>
-
-    <input
-      type="email"
-      formControlName="email"
-      class="form-control mb-2 py-3"
-      [placeholder]="'Email'"
-    />
-
-    <div
-      *ngIf="Forget.get('email')?.errors && Forget.get('email')?.touched"
-      class="alert alert-danger"
-    >
-      <p *ngIf="Forget.get('email')?.getError('required')" class="mb-0">
-        Email is Required
+<div class="py-5 my-5">
+  <form [formGroup]="Forget" (ngSubmit)="forget(Forget)">
+    <div class="container mt-5">
+      <h2 class="fw-bold">Please Enter Your Email:</h2>
+      <p *ngIf="apiErr" class="alert alert-danger">
+        {{ apiErr }}
       </p>
-      <p *ngIf="Forget.get('email')?.getError('email')" class="mb-0">
-        Email is not Valid
-      </p>
+
+      <input
+        type="email"
+        formControlName="email"
+        class="form-control mb-2 py-3"
+        [placeholder]="'Email'"
+      />
+
+      <div
+        *ngIf="Forget.get('email')?.errors && Forget.get('email')?.touched"
+        class="alert alert-danger"
+      >
+        <p *ngIf="Forget.get('email')?.getError('required')" class="mb-0">
+          Email is Required
+        </p>
+        <p *ngIf="Forget.get('email')?.getError('email')" class="mb-0">
+          Email is not Valid
+        </p>
+      </div>
+
+      <button
+        [style.background-color]="Forget.valid ? '#4fa74f' : ''"
+        [style.color]="Forget.valid ? '#fff' : ''"
+        [style.border-color]="Forget.valid ? '#4fa74f' : ''"
+        [disabled]="load"
+        [disabled]="Forget.invalid"
+        type="submit"
+        class="btn py-2 btn-outline-dark fa-1x ms-auto d-block px-4 cursor-pointer"
+      >
+        <i *ngIf="load" class="fa fa-spinner fa-spin"></i>
+        <span class="fw-bold" *ngIf="!load">Verify</span>
+      </button>
     </div>
-
-    <button
-      [style.background-color]="Forget.valid ? '#4fa74f' : ''"
-      [style.color]="Forget.valid ? '#fff' : ''"
-      [style.border-color]="Forget.valid ? '#4fa74f' : ''"
-      [disabled]="load"
-      [disabled]="Forget.invalid"
-      type="submit"
-      class="btn py-2 btn-outline-dark fa-1x ms-auto d-block px-4 cursor-pointer"
-    >
-      <i *ngIf="load" class="fa fa-spinner fa-spin"></i>
-      <span class="fw-bold" *ngIf="!load">Verify</span>
-    </button>
-  </div>
-</form>
+  </form>
+</div>
